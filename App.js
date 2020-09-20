@@ -1,103 +1,9 @@
 import React, {useState, useEffect, useCallback} from 'react';
 import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
-const MOCKED_MOVIES_DATA = [
-  {
-    id: '1',
-    title: '标题1',
-    year: '2015',
-    posters: {
-      thumbnail:
-        'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-    },
-  },
-  {
-    id: '2',
-    title: '标题2',
-    year: '2015',
-    posters: {
-      thumbnail:
-        'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-    },
-  },
-  {
-    id: '3',
-    title: '标题3',
-    year: '2015',
-    posters: {
-      thumbnail:
-        'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-    },
-  },
-  {
-    id: '4',
-    title: '标题4',
-    year: '2015',
-    posters: {
-      thumbnail:
-        'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-    },
-  },
-  {
-    id: '5',
-    title: '标题5',
-    year: '2015',
-    posters: {
-      thumbnail:
-        'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-    },
-  },
-  {
-    id: '6',
-    title: '标题6',
-    year: '2015',
-    posters: {
-      thumbnail:
-        'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-    },
-  },
-  {
-    id: '7',
-    title: '标题7',
-    year: '2015',
-    posters: {
-      thumbnail:
-        'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-    },
-  },
-  {
-    id: '8',
-    title: '标题8',
-    year: '2015',
-    posters: {
-      thumbnail:
-        'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-    },
-  },
-  {
-    id: '9',
-    title: '标题9',
-    year: '2015',
-    posters: {
-      thumbnail:
-        'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-    },
-  },
-  {
-    id: '10',
-    title: '标题10',
-    year: '2015',
-    posters: {
-      thumbnail:
-        'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-    },
-  },
-];
 // 在 组建中引入css类
 const App = () => {
   const [state, setState] = useState({data: [], loaded: false});
-  const [url, setUrl] = useState(
-    'https://raw.githubusercontent.com/facebook/react-native/0.51-stable/docs/MoviesExample.json',
-  );
+  const [url, setUrl] = useState('http://localhost:8080/movie/');
   const fetchData = useCallback(() => {
     fetch(url)
       .then((response) => response.json())
@@ -120,7 +26,7 @@ const App = () => {
   }, [fetchData]);
   return (
     <FlatList
-      data={MOCKED_MOVIES_DATA}
+      data={state.data}
       renderItem={({item}) => (
         <View style={styles.container}>
           <Image
