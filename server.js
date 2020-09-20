@@ -1,5 +1,4 @@
-var http = require('http');
-
+const http = require('http');
 const app = http.createServer((req, res) => {
   if (req.url === '/movie/' && req.method === 'GET') {
     const data = [

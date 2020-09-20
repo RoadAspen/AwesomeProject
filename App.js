@@ -19,7 +19,6 @@ const App = () => {
       .catch((error) => {
         console.log(error.message);
       })
-      .done();
   }, [url]);
   useEffect(() => {
     fetchData();
