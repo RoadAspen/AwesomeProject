@@ -3,6 +3,7 @@ import React, {useState, useEffect, useCallback} from 'react';
 import {View, Text, StyleSheet, Image, FlatList, Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import {createCompatNavigatorFactory} from '@react-navigation/compat';
 global.XMLHttpRequest = global.originalXMLHttpRequest || global.XMLHttpRequest;
 // 在 组建中引入css类
 function HomeScreen({navigation}) {
@@ -36,16 +37,14 @@ function DetailsScreen({navigation}) {
   );
 }
 
-// const Stack = createStackNavigator({
-//   Details: {
-//     Screen: DetailsScreen,
-
-//   },
-//   Home: {
-//     Screen: HomeScreen,
-//   },
-// });
-const Stack = createStackNavigator();
+const Stack = createStackNavigator({
+  Details: {
+    Screen: DetailsScreen,
+  },
+  Home: {
+    Screen: HomeScreen,
+  },
+});
 export const App = () => (
   // NavigationContainer 包含所有的元素，相当于 react-router 中最外层的Router
   <NavigationContainer>
@@ -64,12 +63,7 @@ export const App = () => (
         },
       }}>
       {/* 相当于 react-router中的Route */}
-      <Stack.Screen name="Home" component={HomeScreen} />
-      <Stack.Screen
-        name="Details"
-        component={DetailsScreen}
-        options={{title: 'Overview'}}
-      />
+      <Stack />
     </Stack.Navigator>
   </NavigationContainer>
 );
