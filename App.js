@@ -1,171 +1,76 @@
+import 'react-native-gesture-handler';
 import React, {useState, useEffect, useCallback} from 'react';
-import {View, Text, StyleSheet, Image, FlatList} from 'react-native';
+import {View, Text, StyleSheet, Image, FlatList, Button} from 'react-native';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
+global.XMLHttpRequest = global.originalXMLHttpRequest || global.XMLHttpRequest;
 // 在 组建中引入css类
-const App = () => {
-  const [state, setState] = useState({data: [], loaded: false});
-  const [url, setUrl] = useState('http://localhost:8080/movie/');
-//  const fetchData = useCallback(() => {
-//    fetch(url)
-//      .then((response) => response.json())
-//      .then((responseData) => {
-//        console.log(responseData);
-//        // 注意，这里使用了this关键字，为了保证this在调用时仍然指向当前组件，我们需要对其进行“绑定”操作
-//        setState((state) => ({
-//          //把数据添加到 data 里（注意这里使用了数组的 concat 方法生成新数组，不能直接在原数组上 push！）：
-//          data: state.data.concat(responseData.movies),
-//          loaded: true,
-//        }));
-//      })
-//      .catch((error) => {
-//        console.log(error.message);
-//      })
-//  }, [url]);
-//  useEffect(() => {
-//    fetchData();
-//  }, [fetchData]);
-const data = [
-      {
-        id: '1',
-        title: '标题1',
-        year: '2015',
-        posters: {
-          thumbnail:
-            'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-        },
-      },
-      {
-        id: '2',
-        title: '标题2',
-        year: '2015',
-        posters: {
-          thumbnail:
-            'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-        },
-      },
-      {
-        id: '3',
-        title: '标题3',
-        year: '2015',
-        posters: {
-          thumbnail:
-            'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-        },
-      },
-      {
-        id: '4',
-        title: '标题4',
-        year: '2015',
-        posters: {
-          thumbnail:
-            'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-        },
-      },
-      {
-        id: '5',
-        title: '标题5',
-        year: '2015',
-        posters: {
-          thumbnail:
-            'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-        },
-      },
-      {
-        id: '6',
-        title: '标题6',
-        year: '2015',
-        posters: {
-          thumbnail:
-            'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-        },
-      },
-      {
-        id: '7',
-        title: '标题7',
-        year: '2015',
-        posters: {
-          thumbnail:
-            'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-        },
-      },
-      {
-        id: '8',
-        title: '标题8',
-        year: '2015',
-        posters: {
-          thumbnail:
-            'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-        },
-      },
-      {
-        id: '9',
-        title: '标题9',
-        year: '2015',
-        posters: {
-          thumbnail:
-            'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-        },
-      },
-      {
-        id: '10',
-        title: '标题10',
-        year: '2015',
-        posters: {
-          thumbnail:
-            'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
-        },
-      },
-    ];
+function HomeScreen({navigation}) {
   return (
-    <FlatList
-      data={data}
-      renderItem={({item}) => (
-        <View style={styles.container}>
-          <Image
-            source={{uri: item.posters.thumbnail}}
-            style={styles.thumbnail}
-          />
-          <View style={styles.rightContainer}>
-            <Text style={styles.title}>{item.title}</Text>
-            <Text style={styles.year}>{item.year}</Text>
-          </View>
-        </View>
-      )}
-      style={styles.list}
-      keyExtractor={(item) => item.id}
-    />
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <Text>Home Screen</Text>
+      <Button
+        title="Go to Details"
+        onPress={() => navigation.navigate('Details')}
+      />
+    </View>
   );
-};
+}
 
-// 创建一个css类
-const styles = StyleSheet.create({
-  list: {
-    paddingTop: 20,
-    backgroundColor: '#F5FCFF',
-  },
+function DetailsScreen({navigation}) {
+  // navigation.push 会一直添加，尽管当前已经是目标路径
+  // navigation.navigation 则会判断当前路径是否已是目标路径，如果是目标路径，则不做任何操作
+  return (
+    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
+      <Text>Details Screen</Text>
+      <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+      <Button
+        title="Go to Details.... again"
+        onPress={() => navigation.push('Details')}
+      />
+      <Button
+        title="Update the title"
+        onPress={() => navigation.setOptions({title: 'Updated!'})}
+      />
+    </View>
+  );
+}
 
-  container: {
-    padding: 10,
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
+// const Stack = createStackNavigator({
+//   Details: {
+//     Screen: DetailsScreen,
 
-  thumbnail: {
-    width: 53,
-    height: 81,
-  },
-  rightContainer: {
-    flex: 1, //让rightContainer在父容器中占据 Image 之外剩下的全部空间
-  },
-  title: {
-    fontSize: 20,
-    marginBottom: 8,
-    textAlign: 'center',
-  },
-  year: {
-    textAlign: 'center',
-  },
-});
+//   },
+//   Home: {
+//     Screen: HomeScreen,
+//   },
+// });
+const Stack = createStackNavigator();
+export const App = () => (
+  // NavigationContainer 包含所有的元素，相当于 react-router 中最外层的Router
+  <NavigationContainer>
+    {
+      // Stack.Navigator 负责创建默认导航，相当于 react-router中的 Switch
+      // screenOptions 全局配置
+    }
+    <Stack.Navigator
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: '#f4511e',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontWeight: 'bold',
+        },
+      }}>
+      {/* 相当于 react-router中的Route */}
+      <Stack.Screen name="Home" component={HomeScreen} />
+      <Stack.Screen
+        name="Details"
+        component={DetailsScreen}
+        options={{title: 'Overview'}}
+      />
+    </Stack.Navigator>
+  </NavigationContainer>
+);
 export default App;

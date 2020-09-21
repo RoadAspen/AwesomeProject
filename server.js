@@ -1,10 +1,12 @@
 const http = require('http');
 const app = http.createServer((req, res) => {
+  console.log('收到请求');
+  console.log(req.url);
   if (req.url === '/movie/' && req.method === 'GET') {
     const data = [
       {
         id: '1',
-        title: '标题1',
+        title: '标题123',
         year: '2015',
         posters: {
           thumbnail:
@@ -92,8 +94,46 @@ const app = http.createServer((req, res) => {
             'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
         },
       },
+      {
+        id: '11',
+        title: '标题10',
+        year: '2015',
+        posters: {
+          thumbnail:
+            'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
+        },
+      },
+      {
+        id: '12',
+        title: '标题10',
+        year: '2015',
+        posters: {
+          thumbnail:
+            'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
+        },
+      },
+      {
+        id: '13',
+        title: '标题10',
+        year: '2015',
+        posters: {
+          thumbnail:
+            'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
+        },
+      },
+      {
+        id: '14',
+        title: '标题10',
+        year: '2015',
+        posters: {
+          thumbnail:
+            'http://resizing.flixster.com/DeLpPTAwX3O2LszOpeaMHjbzuAw=/53x77/dkpu1ddg7pbsk.cloudfront.net/movie/11/16/47/11164719_ori.jpg',
+        },
+      },
     ];
-    res.writeHead(200, {'Content-Type': 'application/json'});
+    res.writeHead(200, {
+      'Content-Type': 'application/json',
+    });
     res.write(JSON.stringify(data));
     res.end();
   }
