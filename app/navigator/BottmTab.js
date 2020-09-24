@@ -37,20 +37,20 @@ const PageD = (props) => (
 
 const PageE = (props) => (
   <View style={styles.view}>
-    <Text>Page D</Text>
+    <Text>Page E</Text>
   </View>
 );
 // 创建底部导航
-const BottmTab = createBottomTabNavigator();
-const BottomTabNavigator = () => {
+const BottmBottomTabNavigatorTab = createBottomTabNavigator();
+const BottomTab = () => {
   return (
-    <BottmTab.Navigator>
-      <BottmTab.Screen name="PageA" component={PageA} />
-      <BottmTab.Screen name="PageB" component={PageB} />
-      <BottmTab.Screen name="PageC" component={PageC} />
-      <BottmTab.Screen name="PageD" component={PageD} />
-      <BottmTab.Screen name="PageE" component={PageE} />
-    </BottmTab.Navigator>
+    <BottmBottomTabNavigatorTab.Navigator>
+      <BottmBottomTabNavigatorTab.Screen name="PageA" component={PageA} />
+      <BottmBottomTabNavigatorTab.Screen name="PageB" component={PageB} />
+      <BottmBottomTabNavigatorTab.Screen name="PageC" component={PageC} />
+      <BottmBottomTabNavigatorTab.Screen name="PageD" component={PageD} />
+      <BottmBottomTabNavigatorTab.Screen name="PageE" component={PageE} />
+    </BottmBottomTabNavigatorTab.Navigator>
   );
 };
-export default BottomTabNavigator;
+export default BottomTab;
